@@ -1,95 +1,96 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Header from "@/components/Header";
+import Hero from "@/sections/Hero";
+import About from "@/sections/About";
+import Facts from "@/sections/Facts";
+import Skills from "@/sections/Skills";
+import Resume from "@/sections/Resume";
+import Portfoilo from "@/sections/Portfoilo";
+import Services from "@/sections/Services";
+import Contact from "@/sections/Contact";
+import Footer from "@/components/Footer";
+import Script from "next/script";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div>
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet"
+      />
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+      <link href="/portfoilo/assets/vendor/aos/aos.css" rel="stylesheet" />
+      <link
+        href="/portfoilo/assets/vendor/bootstrap/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
+      <link
+        href="/portfoilo/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+        rel="stylesheet"
+      />
+      <link
+        href="/portfoilo/assets/vendor/boxicons/css/boxicons.min.css"
+        rel="stylesheet"
+      />
+      <link
+        href="/portfoilo/assets/vendor/glightbox/css/glightbox.min.css"
+        rel="stylesheet"
+      />
+      <link
+        href="/portfoilo/assets/vendor/swiper/swiper-bundle.min.css"
+        rel="stylesheet"
+      />
+
+      <link href="/portfoilo/assets/css/style.css" rel="stylesheet" />
+      <Header />
+      <Hero />
+      <main id="main">
+        <About />
+        <Facts />
+        <Skills />
+        <Resume />
+        {/* <Portfoilo /> */}
+        <Services />
+        <Contact />
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <Footer />
+      <Script
+        src="/portfoilo/assets/vendor/purecounter/purecounter_vanilla.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/aos/aos.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/glightbox/js/glightbox.min.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/isotope-layout/isotope.pkgd.min.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/swiper/swiper-bundle.min.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/typed.js/typed.umd.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/waypoints/noframework.waypoints.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        src="/portfoilo/assets/vendor/php-email-form/validate.js"
+        strategy="beforeInteractive"
+      />
+
+      <Script src="/portfoilo/assets/js/main.js" strategy="beforeInteractive" />
     </div>
   );
 }
