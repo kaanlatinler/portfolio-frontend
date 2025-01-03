@@ -105,3 +105,54 @@ export async function AddProject(data) {
     throw error.response?.data || error.message;
   }
 }
+
+export async function GetProjects() {
+  const token = sessionStorage.getItem("token");
+  try {
+    const response = await api.get("/projects/get-all-projects", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error("Failed to get projects");
+    }
+  } catch (error) {
+    console.error(error);
+    throw error.response?.data || error.message;
+  }
+}
+
+export async function DeleteProject(id) {
+  const token = sessionStorage.getItem("token");
+  try {
+    const response = await api.delete(`/projects/delete-project/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error("Failed to delete project");
+    }
+  } catch (error) {
+    console.error(error);
+    throw error.response?.data || error.message;
+  }
+}
+
+export async function GetProjectByName(name) {
+  const token = sessionStorage.getItem("token");
+  try {
+    const response = await api.get(`/projects/get-project-by-name/${name}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error("Failed to get project by name");
+    }
+  } catch (error) {
+    console.error(error);
+    throw error.response?.data || error.message;
+  }
+}

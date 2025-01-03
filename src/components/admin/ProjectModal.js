@@ -10,7 +10,7 @@ const ProjectModal = () => {
     url: "",
     client: "",
     project_date: "",
-    image_url: "https://picsum.photos/200",
+    image_url: "",
     category_id: "disabled", // Varsayılan değer
     tech_id: "disabled", // Varsayılan değer
   });
@@ -40,6 +40,31 @@ const ProjectModal = () => {
     }));
   };
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Bu kod yalnızca client-side çalışacak
+      // Modal'ı kapama işlemi
+      const modalCloseButton = document
+        .getElementById("AddProjectModal")
+        .querySelector(".btn-close");
+      if (modalCloseButton) modalCloseButton.click();
+    }
+  }, []); // Bu effect yalnızca bir kez çalışacak (component mount olduğunda)
+
+  // formu temizleme işlemi
+  const resetForm = () => {
+    setData({
+      name: "",
+      description: "",
+      url: "",
+      client: "",
+      project_date: "",
+      image_url: "",
+      category_id: "disabled",
+      tech_id: "disabled",
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -58,26 +83,13 @@ const ProjectModal = () => {
 
     const res = await AddProject(data);
 
+    // Başarılı bir şekilde projeyi ekledikten sonra
     if (res.success) {
       setToastVariant("success");
       setToastMessage(res.message || "Proje başarıyla eklendi");
       setShowToast(true);
-      // Modal'ı kapat
-      document
-        .getElementById("AddProjectModal")
-        .querySelector(".btn-close")
-        .click();
-      // Formu temizle
-      setData({
-        name: "",
-        description: "",
-        url: "",
-        client: "",
-        project_date: "",
-        image_url: "https://picsum.photos/200",
-        category_id: "disabled",
-        tech_id: "disabled",
-      });
+      resetForm(); // formu sıfırlıyoruz
+      window.location.reload();
     } else {
       setToastVariant("danger");
       setToastMessage(res.message || "Bir hata oluştu");
@@ -216,16 +228,11 @@ const ProjectModal = () => {
                   <label className="col-sm-2 col-form-label">Resim</label>
                   <div className="col-sm-10">
                     <input
+                      type="text"
                       className="form-control"
-                      type="file"
-                      id="formFile"
                       name="image_url"
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          image_url: "https://picsum.photos/200",
-                        })
-                      }
+                      value={data.image_url}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>

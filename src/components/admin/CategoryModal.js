@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AddCategory } from "../../services/api";
 import { Toast, ToastContainer } from "react-bootstrap";
 
@@ -14,6 +14,24 @@ const CategoryModal = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
 
+  // Formu sıfırlama fonksiyonu
+  const resetForm = () => {
+    setData({
+      name: "",
+    });
+  };
+
+  // Modal'ı kapatma işlemi ve form sıfırlama
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Modal'ı kapama işlemi
+      const modalCloseButton = document
+        .getElementById("AddCategoryModal")
+        ?.querySelector(".btn-close");
+      if (modalCloseButton) modalCloseButton.click();
+    }
+  }, []); // Bu effect yalnızca bir kez çalışacak (component mount olduğunda)
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -26,13 +44,9 @@ const CategoryModal = () => {
       setToastVariant("success");
       setToastMessage(res.message || "Kategori başarıyla eklendi");
       setShowToast(true);
-      // Modal'ı kapat
-      document
-        .getElementById("AddCategoryModal")
-        .querySelector(".btn-close")
-        .click();
-      // Formu temizle
-      setData({ name: "" });
+      // Modal'ı kapama ve form sıfırlama işlemi
+      resetForm();
+      window.location.reload();
     } else {
       setToastVariant("danger");
       setToastMessage(res.message || "Bir hata oluştu");

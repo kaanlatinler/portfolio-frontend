@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 const Contact = () => {
@@ -87,7 +89,9 @@ const Contact = () => {
                 </div>
               </div>
               <div className="text-center">
-                <button type="submit">Send Message</button>
+                <button type="submit" disabled>
+                  Send Message
+                </button>
               </div>
             </form>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AddTech } from "../../services/api";
 import { Toast, ToastContainer } from "react-bootstrap";
 
@@ -12,6 +12,24 @@ const TechModal = () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("success");
+
+  // Formu sıfırlama fonksiyonu
+  const resetForm = () => {
+    setData({
+      name: "",
+    });
+  };
+
+  // Modal'ı kapama işlemi ve form sıfırlama
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Modal'ı kapama işlemi
+      const modalCloseButton = document
+        .getElementById("AddLangModal")
+        ?.querySelector(".btn-close");
+      if (modalCloseButton) modalCloseButton.click();
+    }
+  }, []); // Bu effect yalnızca bir kez çalışacak (component mount olduğunda)
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -25,11 +43,9 @@ const TechModal = () => {
       setToastVariant("success");
       setToastMessage(res.message || "Teknoloji başarıyla eklendi");
       setShowToast(true);
-      document
-        .getElementById("AddLangModal")
-        .querySelector(".btn-close")
-        .click();
-      setData({ name: "" });
+      // Modal'ı kapama ve form sıfırlama işlemi
+      resetForm();
+      window.location.reload();
     } else {
       setToastVariant("danger");
       setToastMessage(res.message || "Bir hata oluştu");

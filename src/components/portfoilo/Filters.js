@@ -1,6 +1,6 @@
 import React from "react";
 
-const Filters = ({ categories }) => {
+const Filters = ({ categories, activeFilter, setActiveFilter }) => {
   return (
     <div className="row">
       <div
@@ -9,11 +9,18 @@ const Filters = ({ categories }) => {
         data-aos-delay="100"
       >
         <ul id="portfolio-flters">
-          <li data-filter="*" className="filter-active">
+          <li
+            onClick={() => setActiveFilter("*")}
+            className={activeFilter === "*" ? "filter-active" : ""}
+          >
             All
           </li>
           {categories.map((category) => (
-            <li data-filter={`.filter-${category.name}`} key={category.id}>
+            <li
+              key={category.id}
+              onClick={() => setActiveFilter(category.name)}
+              className={activeFilter === category.name ? "filter-active" : ""}
+            >
               {category.name}
             </li>
           ))}
