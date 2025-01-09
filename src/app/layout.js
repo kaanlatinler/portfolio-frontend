@@ -1,10 +1,4 @@
-import Script from "next/script";
-
-export const metadata = {
-  title: "Kaan Latinler",
-  description: "Kaan Latinler Portfoilo",
-};
-
+"use client";
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">

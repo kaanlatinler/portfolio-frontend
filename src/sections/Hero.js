@@ -5,10 +5,7 @@ const Hero = () => {
     <section id="hero" className="d-flex flex-column justify-content-center">
       <div className="container" data-aos="zoom-in" data-aos-delay="100">
         <h1>Kaan Latinler</h1>
-        <p>
-          I'm Backend Developer
-          <span className="typed" data-typed-items="Backend Developer"></span>
-        </p>
+        <p>I'm Backend Developer</p>
         <div className="social-links">
           <a href="https://twitter.com/Kaan_ltnlr" className="twitter">
             <i className="bx bxl-twitter"></i>

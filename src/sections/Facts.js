@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import FactBox from "../components/facts/FactBox";
 

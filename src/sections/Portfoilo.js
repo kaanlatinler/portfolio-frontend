@@ -11,6 +11,8 @@ const Portfolio = ({ projects, categories }) => {
   //     ? projects
   //     : projects.filter((project) => project.Category.name === activeFilter);
 
+  if (!projects) return <div>Loading...</div>;
+
   return (
     <section id="portfolio" className="portfolio">
       <div className="container">

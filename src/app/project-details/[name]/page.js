@@ -1,3 +1,5 @@
+"use client";
+
 import Script from "next/script";
 import ProjectSection from "@/components/project-details/ProjectSection";
 export default async function ProjectDetails({ params }) {

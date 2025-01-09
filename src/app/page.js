@@ -11,23 +11,20 @@ import Contact from "@/sections/Contact";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import { useState, useEffect } from "react";
-import { GetProjects, GetCategories } from "@/services/api";
+import { GetProjects } from "@/services/api";
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
       const data = await GetProjects();
-      const categories = await GetCategories();
       setProjects(data.data);
-      setCategories(categories.data);
-      setLoading(false); // Sayfa yüklendikten sonra loading state'ini false yap
+      setLoading(false);
     };
     fetchProjects();
-  }, []); // loading dependency'i kaldırdık, çünkü sadece ilk renderda çalışması yeterli
+  }, []);
 
   return (
     <div>
@@ -64,7 +61,7 @@ export default function Home() {
         <About />
         <Skills />
         <Resume />
-        <Portfoilo projects={projects} categories={categories} />
+        <Portfoilo projects={projects} />
         <Services />
         <Contact />
       </main>
